@@ -1,6 +1,10 @@
 import re
 from nltk.stem.porter import PorterStemmer
 from token_features import token
+from sklearn.feature_extraction.text import CountVectorizer
+import numpy as np
+import pandas as pd
+
 class Text_preprocessing:
     def preprocess(self,q):
         
@@ -186,7 +190,7 @@ class Text_preprocessing:
         return (len(w1) + len(w2))
     
 p=Text_preprocessing()
-def df(new_df):
+def preprocess(new_df):
     new_df['question1'] = new_df['question1'].apply(p.preprocess)
     new_df['question2'] = new_df['question2'].apply(p.preprocess)
     
@@ -204,4 +208,18 @@ def df(new_df):
     
     new_df=token(new_df)
     
-    return new_df    
+    ques_df = new_df[['question1','question2']]
+    final_df = new_df.drop(columns=['id','qid1','qid2','question1','question2'])
+    questions = list(ques_df['question1']) + list(ques_df['question2'])
+
+    cv = CountVectorizer(max_features=3000)
+    
+    q1_arr, q2_arr = np.vsplit(cv.fit_transform(questions).toarray(),2)
+    
+    temp_df1 = pd.DataFrame(q1_arr, index= ques_df.index)
+    temp_df2 = pd.DataFrame(q2_arr, index= ques_df.index)
+    temp_df = pd.concat([temp_df1, temp_df2], axis=1)
+    
+    final_df = pd.concat([final_df, temp_df], axis=1)  
+    
+    return final_df    

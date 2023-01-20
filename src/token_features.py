@@ -1,4 +1,5 @@
 from nltk.corpus import stopwords
+from fuzzy_features import fuzz
 class Token:
     def fetch_token_features(self,row):
         
@@ -93,4 +94,6 @@ def token(new_df):
 
     new_df['abs_len_diff'] = list(map(lambda x: x[0], length_features))
     new_df['mean_len'] = list(map(lambda x: x[1], length_features))
+    
+    new_df=fuzz(new_df)
     return new_df
