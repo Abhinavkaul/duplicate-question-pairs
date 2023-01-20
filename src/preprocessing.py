@@ -1,5 +1,6 @@
 import re
 from nltk.stem.porter import PorterStemmer
+from token_features import token
 class Text_preprocessing:
     def preprocess(self,q):
         
@@ -173,3 +174,34 @@ class Text_preprocessing:
 
         
         return q
+    
+    def common_words(self,row):
+        w1 = set(row['question1'].split(" "))
+        w2 = set(row['question2'].split(" "))   
+        return len(w1 & w2)
+    
+    def total_words(self,row):
+        w1 = set(row['question1'].split(" "))
+        w2 = set(row['question2'].split(" "))    
+        return (len(w1) + len(w2))
+    
+p=Text_preprocessing()
+def df(new_df):
+    new_df['question1'] = new_df['question1'].apply(p.preprocess)
+    new_df['question2'] = new_df['question2'].apply(p.preprocess)
+    
+    new_df['q1_len'] = new_df['question1'].str.len() 
+    new_df['q2_len'] = new_df['question2'].str.len()
+    
+    new_df['q1_num_words'] = new_df['question1'].apply(lambda row: len(row.split(" ")))
+    new_df['q2_num_words'] = new_df['question2'].apply(lambda row: len(row.split(" ")))
+    
+    new_df['word_common'] = new_df.apply(p.common_words, axis=1)
+    
+    new_df['word_total'] = new_df.apply(p.total_words, axis=1)
+
+    new_df['word_share'] = round(new_df['word_common']/new_df['word_total'],2)
+    
+    new_df=token(new_df)
+    
+    return new_df    
