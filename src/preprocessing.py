@@ -4,6 +4,7 @@ from token_features import token
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 import pandas as pd
+import pickle
 
 class Text_preprocessing:
     def preprocess(self,q):
@@ -214,9 +215,9 @@ def preprocess(new_df):
     questions = list(ques_df['question1']) + list(ques_df['question2'])
 
     cv = CountVectorizer(max_features=3000)
-    #pickle.dump(cv,open('cv.pkl','wb'))
     
     q1_arr, q2_arr = np.vsplit(cv.fit_transform(questions).toarray(),2)
+    #pickle.dump(cv,open('cv.pkl','wb'))
     
     temp_df1 = pd.DataFrame(q1_arr, index= ques_df.index)
     temp_df2 = pd.DataFrame(q2_arr, index= ques_df.index)

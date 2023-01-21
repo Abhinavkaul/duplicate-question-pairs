@@ -2,6 +2,8 @@ import nltk
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from fuzzy_features import fuzz
+import pickle
+
 class Token:
     def fetch_token_features(self,row):
         
