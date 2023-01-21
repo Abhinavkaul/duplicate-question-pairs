@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  duplicate-question-pair:
+    build: ./
+    image: duplicate-question-pairs:latest1
+    container_name: duplicate-question
+    entrypoint: pytest ./tests/test_model.py
