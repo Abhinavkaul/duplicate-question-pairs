@@ -8,7 +8,7 @@ df1=pd.read_csv('train.csv')
 new_df=df1.sample(35000)
 final_df=preprocess(new_df)
 column_names = list(final_df.columns)
-print(len(column_names))
+print("length=",len(column_names))
 
 
 X_train,X_test,y_train,y_test = train_test_split(final_df.iloc[:,1:].values,final_df.iloc[:,0].values,test_size=0.2,random_state=1)

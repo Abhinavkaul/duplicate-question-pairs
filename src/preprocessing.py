@@ -191,6 +191,7 @@ class Text_preprocessing:
     
 p=Text_preprocessing()
 def preprocess(new_df):
+    new_df.dropna(inplace=True)
     new_df['question1'] = new_df['question1'].apply(p.preprocess)
     new_df['question2'] = new_df['question2'].apply(p.preprocess)
     
