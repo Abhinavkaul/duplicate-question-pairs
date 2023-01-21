@@ -2,6 +2,8 @@ import nltk
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from fuzzy_features import fuzz
+import pickle
+
 class Token:
     def fetch_token_features(self,row):
         
@@ -11,6 +13,7 @@ class Token:
         SAFE_DIV = 0.0001 
 
         STOP_WORDS = stopwords.words("english")
+        #pickle.dump(STOP_WORDS,open('stopwords.pkl','wb'))
         
         token_features = [0.0]*8
         

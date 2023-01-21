@@ -3,6 +3,7 @@ from preprocessing import preprocess
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import pickle
 
 df1=pd.read_csv('train.csv')
 new_df=df1.sample(35000)
@@ -18,3 +19,5 @@ rf.fit(X_train,y_train)
 y_pred = rf.predict(X_test)
 score=accuracy_score(y_test,y_pred)
 print(score)
+
+#pickle.dump(rf,open('model.pkl','wb'))
