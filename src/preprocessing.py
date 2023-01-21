@@ -214,6 +214,7 @@ def preprocess(new_df):
     questions = list(ques_df['question1']) + list(ques_df['question2'])
 
     cv = CountVectorizer(max_features=3000)
+    #pickle.dump(cv,open('cv.pkl','wb'))
     
     q1_arr, q2_arr = np.vsplit(cv.fit_transform(questions).toarray(),2)
     

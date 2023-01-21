@@ -11,6 +11,7 @@ class Token:
         SAFE_DIV = 0.0001 
 
         STOP_WORDS = stopwords.words("english")
+        #pickle.dump(STOP_WORDS,open('stopwords.pkl','wb'))
         
         token_features = [0.0]*8
         
