@@ -13,7 +13,8 @@ pipeline{
         stage("BuildDocker"){
             steps{
                 script{
-                    bat "docker build -t test ."
+                    //bat "docker build -t test ."
+                    bat "docker-compose up"
                 }
             }
         }
