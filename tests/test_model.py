@@ -19,7 +19,10 @@ def dataframe(q1,q2):
 def predictor(final_df):
         arr = final_df.to_numpy()
         result=model.predict(arr)
-        return result
+        if result==[1]:
+                return "DUPLICATE"
+        else:
+                return "NOT DUPLICATE"
 
 
 def test_sample1():
@@ -27,33 +30,33 @@ def test_sample1():
         q2="Which fish would survive in salt water?"
         final_df=dataframe(q1,q2)
         result=predictor(final_df)
-        assert result == [0] , "Should be not equal"
+        assert result == "NOT DUPLICATE" , "Should be 'not equal'"
         
 def test_sample2():
         q1="Does a black hole have mass?"
         q2="Does a black hole have a finite mass?"
         final_df=dataframe(q1,q2)
         result=predictor(final_df)
-        assert result == [1] , "Should be not equal"
+        assert result == "DUPLICATE" , "Should be 'equal'"
         
 def test_sample3():
         q1="How do I use Twitter as a business source?"
         q2="How do I use Twitter as a business source?"
         final_df=dataframe(q1,q2)
         result=predictor(final_df)
-        assert result == [1] , "Should be not equal"
+        assert result == "DUPLICATE" , "Should be 'equal'"
         
 def test_sample4():
         q1="Which are the prospering towns in Kerala?"
         q2="Why are there so many Christians in Kerala?"
         final_df=dataframe(q1,q2)
         result=predictor(final_df)
-        assert result == [1] , "Should be not equal"
+        assert result == "DUPLICATE" , "Should be 'not equal'"
         
 def test_sample5():
         q1="What would happen if you cover one of your eyes with an eye patch for one year, then take the patch off?"
         q2="What happens if eye medicine enters the eye?"
         final_df=dataframe(q1,q2)
         result=predictor(final_df)
-        assert result == [0] , "Should be not equal"
+        assert result == "NOT DUPLICATE" , "Should be not equal"
         
