@@ -14,15 +14,16 @@ pipeline{
             steps{
                 script{
                     //bat "docker build -t test ."
+                    //bat ""
                     bat "docker-compose up"
+                    bat "docker-compose down"
                 }
             }
         }
         stage("Pytest"){
             steps{
                 script{
-                    bat "cd tests"
-                    bat "pytest test_module.py"
+                    bat "python -m pytest --cov=tests/ ./tests"
                 }
             }
         }
