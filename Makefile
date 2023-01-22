@@ -4,7 +4,7 @@ build-image:
 	docker build -t test .
 
 pytest: build-image
-	docker run -it test /bin/bash -c "cd tests && pytest test_model.py"
+	docker run -it test /bin/bash -c "python -m pytest --cov=tests/ ./tests"
 
 user-input: build-image
 	docker run -it test /bin/bash -c "cd tests && python run.py"
