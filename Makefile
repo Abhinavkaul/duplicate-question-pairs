@@ -1,8 +1,12 @@
 PROJECT=duplicate-question-pair
 
-local-tests:
+build-image:
 	docker build -t test .
-	docker run test
+
+
+
+user-input: build-image
+	docker run -it test /bin/bash -c "cd tests && python run.py"
 
 docker-compose:
 	docker-compose up
