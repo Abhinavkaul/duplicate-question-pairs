@@ -10,7 +10,14 @@ pipeline{
             }
             }
         }
-        stage("Testing"){
+        stage("BuildDocker"){
+            steps{
+                script{
+                    bat ""
+                }
+            }
+        }
+        stage("Pytest"){
             steps{
                 script{
                     bat "cd tests"
