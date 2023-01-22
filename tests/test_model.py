@@ -51,7 +51,7 @@ def test_sample4():
         q2="Why are there so many Christians in Kerala?"
         final_df=dataframe(q1,q2)
         result=predictor(final_df)
-        assert result == "DUPLICATE" , "Should be 'not equal'"
+        assert result == "NOT DUPLICATE" , "Should be 'not equal'"
         
 def test_sample5():
         q1="What would happen if you cover one of your eyes with an eye patch for one year, then take the patch off?"
