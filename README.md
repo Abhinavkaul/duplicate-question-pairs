@@ -1,11 +1,15 @@
 # Duplicate-Question-Pairs
 
 
-## Testing on local
+### Testing on local (Pytest)
 ```sh
-make local-tests
+make pytest
 ```
 or
 ```sh
 make docker-compose
+```
+### Testing model by providing own input
+```sh
+make user-input
 ```
