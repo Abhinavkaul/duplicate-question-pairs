@@ -14,7 +14,7 @@ pipeline{
             steps{
                 script{
                     //bat "docker build -t test ."
-                    //bat ""
+                    //bat "docker run -it test /bin/bash -c "python -m pytest --cov=tests/ ./tests""
                     bat "docker-compose up"
                     bat "docker-compose down"
                 }
